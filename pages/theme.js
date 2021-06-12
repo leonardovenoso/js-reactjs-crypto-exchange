@@ -26,4 +26,3 @@ export const Theme = {
     primary: '#fafafa',
   },
 };
-
