@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Lato&family=Rubik&display=swap');
 
   html {
     box-sizing: border-box;
@@ -10,12 +9,21 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Lato', sans-serif;
+    font-weight: 300;
+  }
+
+  h1 {
+    font-weight: 900;
+  }
+
+  h2 {
+    font-weight: 600;
   }
 `;
 
 export const Theme = {
   colors: {
-    primary: "#fafafa",
+    primary: '#fafafa',
   },
 };
 
