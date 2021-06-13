@@ -21,7 +21,8 @@
     "no-new-wrappers": "off",
     "no-param-reassign": "off",
     "no-shadow": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-debugger": "off"
   },
   "settings": {
     "import/resolver": {
