@@ -1,4 +1,5 @@
 {
   "componentFolder": "./cypress/components",
+  "integrationFolder": "./cypress/unitAndIntegration",
   "testFiles": "**/*.spec.js"
 }
