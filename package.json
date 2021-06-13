@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ./pages/**/*.js",
+    "lint": "eslint ./pages/**/*.js; eslint ./services/**/*.js",
     "e2e": "cypress open",
     "test-components": "cypress open-ct",
     "test-components-headless": "cypress run-ct"
