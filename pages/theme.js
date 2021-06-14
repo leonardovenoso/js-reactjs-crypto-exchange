@@ -2,7 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const darkTheme = {
   colors: {
+    black: 'black',
     darkgray: 'rgb(30, 35, 41)',
+    darkgray2: '#333333',
+    lightgray: 'lightgray',
     primary: 'white',
     secondary: '#ffc107',
   },
