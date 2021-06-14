@@ -1,5 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const darkTheme = {
+  colors: {
+    darkgray: 'rgb(30, 35, 41)',
+    primary: 'white',
+    secondary: '#ffc107',
+  },
+  fontSize: {
+    title: '2em',
+  },
+};
+
 export const GlobalStyle = createGlobalStyle`
 
   html {
@@ -10,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
+    background: ${darkTheme.colors.darkgray};
   }
 
   h1 {
@@ -20,9 +32,3 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
 `;
-
-export const Theme = {
-  colors: {
-    primary: '#fafafa',
-  },
-};

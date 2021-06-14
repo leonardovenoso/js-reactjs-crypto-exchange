@@ -25,7 +25,7 @@ const transactionGenerator = (currency, amountOfRecords) => {
   return { credits, debits };
 };
 
-const initialTransactionsInSGD = transactionGenerator('SGD', 2);
+const initialTransactionsInSGD = transactionGenerator('SGD', 100);
 
 export const accountInformation = [
   {
