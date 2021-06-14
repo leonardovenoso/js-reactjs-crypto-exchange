@@ -1,6 +1,13 @@
 import { accountInformation } from './data';
 
-const fetchAccountInformation = async () =>
-  Promise.resolve({ json: () => Promise.resolve(accountInformation) });
+const fetchBankAccounts = async () => {
+  const bankAccounts = accountInformation.map(account => ({
+    accountNumber: account.number,
+    bankName: account.bankName,
+    currency: account.currency,
+  }));
 
-export default fetchAccountInformation;
+  return Promise.resolve({ json: () => Promise.resolve(bankAccounts) });
+};
+
+export default fetchBankAccounts;

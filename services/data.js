@@ -1,10 +1,39 @@
+const transactionGenerator = (currency, amountOfRecords) => {
+  const credits = [];
+  const debits = [];
+
+  for (let i = 0; i < amountOfRecords; i++) {
+    const randomAmount = Math.floor(Math.random() * (2000 - 300 + 1)) + 100;
+
+    credits.push({
+      action: 'credit',
+      amount: randomAmount,
+      currency,
+      description: 'Savings',
+      timestamp: Date.now(),
+    });
+
+    debits.push({
+      action: 'debit',
+      amount: randomAmount,
+      currency,
+      description: 'Savings',
+      timestamp: Date.now(),
+    });
+  }
+
+  return { credits, debits };
+};
+
+const initialTransactionsInSGD = transactionGenerator('SGD', 2);
+
 export const accountInformation = [
   {
-    amount: 55001,
+    amount: 55000,
     bankName: 'POSB',
     currency: 'SGD',
     number: '13311110000',
-    transactions: [],
+    transactions: initialTransactionsInSGD.credits,
   },
   {
     amount: 3,
@@ -18,7 +47,7 @@ export const accountInformation = [
     bankName: 'UOB',
     currency: 'SGD',
     number: '35625270301',
-    transactions: [],
+    transactions: initialTransactionsInSGD.debits,
   },
   {
     amount: 50000,
@@ -42,7 +71,7 @@ export const accountInformation = [
     transactions: [],
   },
   {
-    amount: 15,
+    amount: 0,
     bankName: 'May Bank',
     currency: 'BTC',
     number: '4403163483345',
