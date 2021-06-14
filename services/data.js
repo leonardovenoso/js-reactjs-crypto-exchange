@@ -67,7 +67,7 @@ export const accountInformation = [
     accountNumber: '000123985397',
     amount: 8,
     bankName: 'Bank of America',
-    currency: 'BTC',
+    currency: 'USD',
     transactions: [],
   },
   {
