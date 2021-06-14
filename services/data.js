@@ -73,7 +73,7 @@ export const accountInformation = [
   {
     accountNumber: '4403163483345',
     amount: 0,
-    bankName: 'May Bank',
+    bankName: 'Maybank',
     currency: 'BTC',
     transactions: [],
   },
