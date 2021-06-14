@@ -22,7 +22,8 @@
     "no-param-reassign": "off",
     "no-shadow": "off",
     "react/react-in-jsx-scope": "off",
-    "no-debugger": "off"
+    "no-debugger": "off",
+    "no-plusplus": "off"
   },
   "settings": {
     "import/resolver": {
