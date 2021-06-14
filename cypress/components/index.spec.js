@@ -10,11 +10,7 @@ describe('index', () => {
     cy.contains('Title');
   });
 
-  it('has a subtitle', () => {
-    cy.contains('Subtitle');
-  });
-
-  it('has a regular text', () => {
-    cy.contains('This will be regular');
+  it('has a dropdown list with 7 bank accounts', () => {
+    cy.get('select').find('option').should('be.eq', 7);
   });
 });
