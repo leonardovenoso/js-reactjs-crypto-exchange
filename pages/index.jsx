@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import fetchBankAccounts from '../services/accountService';
-
+import Container from './components/atoms/container';
+import Title from './components/atoms/title';
 import Select from './components/atoms/select';
 
 export default function CryptoExchange() {
@@ -19,14 +20,18 @@ export default function CryptoExchange() {
   return (
     <div>
       <main>
-        <h1>Crypto Exchange</h1>
-        <Select data-cy="bank-accounts">
-          {bankAccounts.map(account => (
-            <option
-              key={account.accountNumber}
-            >{`${account.bankName} - ${account.accountNumber} (${account.currency})`}</option>
-          ))}
-        </Select>
+        <Container>
+          <Title>Crypto Exchange</Title>
+        </Container>
+        <Container>
+          <Select data-cy="bank-accounts">
+            {bankAccounts.map(account => (
+              <option
+                key={account.accountNumber}
+              >{`${account.bankName} - ${account.accountNumber} (${account.currency})`}</option>
+            ))}
+          </Select>
+        </Container>
       </main>
     </div>
   );
