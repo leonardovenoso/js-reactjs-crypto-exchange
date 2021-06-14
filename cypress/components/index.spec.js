@@ -7,10 +7,10 @@ describe('index', () => {
   });
 
   it('has a title', () => {
-    cy.contains('Title');
+    cy.contains('Crypto Exchange');
   });
 
   it('has a dropdown list with 7 bank accounts', () => {
-    cy.get('select').find('option').should('be.eq', 7);
+    cy.get('[data-cy=bank-accounts]').children().should('have.length', 7);
   });
 });
