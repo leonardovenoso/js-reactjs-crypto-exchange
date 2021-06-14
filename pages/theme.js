@@ -6,6 +6,9 @@ export const darkTheme = {
     primary: 'white',
     secondary: '#ffc107',
   },
+  containers: {
+    margin: '2em',
+  },
   fontSize: {
     title: '2em',
   },
