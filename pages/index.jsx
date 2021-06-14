@@ -5,7 +5,13 @@ import fetchBankAccounts, {
 import Container from './components/atoms/container';
 import Title from './components/atoms/title';
 import Select from './components/atoms/select';
-import Table, { Header, Body, Row } from './components/atoms/table';
+import Table, {
+  Header,
+  Body,
+  Row,
+  RowWithBorderBottom,
+} from './components/atoms/table';
+import Button from './components/atoms/button';
 
 export default function CryptoExchange() {
   const [bankAccounts, setBankAccounts] = useState([]);
@@ -41,20 +47,29 @@ export default function CryptoExchange() {
           <Title>Crypto Exchange</Title>
         </Container>
         <Container>
-          <Select
-            defaultValue={{ label: 'Select account', value: 0 }}
-            data-cy="select-bank-account"
-            onChange={fetchTransactions}
-            ref={bankAccountsRef}
-          >
-            <option value="0">Select account</option>
-            {bankAccounts.map(account => (
-              <option
-                key={account.accountNumber}
-                value={account.accountNumber}
-              >{`${account.bankName} - ${account.accountNumber} (${account.currency})`}</option>
-            ))}
-          </Select>
+          <Table>
+            <Row columns="1fr 1fr">
+              <Container margin="0">
+                <Select
+                  defaultValue={{ label: 'Select account', value: 0 }}
+                  data-cy="select-bank-account"
+                  onChange={fetchTransactions}
+                  ref={bankAccountsRef}
+                >
+                  <option value="0">Select account</option>
+                  {bankAccounts.map(account => (
+                    <option
+                      key={account.accountNumber}
+                      value={account.accountNumber}
+                    >{`${account.bankName} - ${account.accountNumber} (${account.currency})`}</option>
+                  ))}
+                </Select>
+              </Container>
+              <Container margin="0" align="right" marginRight="3em">
+                <Button type="button">Transfer</Button>
+              </Container>
+            </Row>
+          </Table>
           <Container>
             <Table>
               <Header
@@ -69,7 +84,7 @@ export default function CryptoExchange() {
               </Header>
               <Body data-cy="transactions-body">
                 {transactions.map(transaction => (
-                  <Row
+                  <RowWithBorderBottom
                     key={transaction.timestamp}
                     columns="1fr 1fr 1fr 0.3fr 0.2fr"
                   >
@@ -78,7 +93,7 @@ export default function CryptoExchange() {
                     <div>{transaction.description}</div>
                     <div>{transaction.currency}</div>
                     <div>{transaction.amount}</div>
-                  </Row>
+                  </RowWithBorderBottom>
                 ))}
                 {bankAccountsRef &&
                   bankAccountsRef.current &&

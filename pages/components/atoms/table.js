@@ -22,15 +22,14 @@ export const Body = styled.div``;
 export const Row = styled(Table)`
   grid-template-columns: ${props => props.columns || 'inherit'};
   height: 2em;
-  border-bottom: 0.1px solid ${props => props.theme.colors.darkgray2};
   font-size: 0.8em;
+`;
+
+export const RowWithBorderBottom = styled(Row)`
+  border-bottom: 0.1px solid ${props => props.theme.colors.darkgray2};
   div {
     transform: translateY(20%);
     padding-left: 1em;
-  }
-
-  div:nth-child(5) {
-    text-align: center;
   }
 
   div:nth-child(5) {
