@@ -22,9 +22,12 @@ describe('DropdownList', () => {
     });
 
     it('shows Select as default value', () => {
-      expect(cy.get('[data-cy=dropdownlist]').first().invoke('val')).should(
-        'eq',
-        '0'
+      expect(
+        cy
+          .get('[data-cy=dropdownlist]')
+          .find(':selected')
+          .invoke('val')
+          .should('eq', '0')
       );
     });
   });
