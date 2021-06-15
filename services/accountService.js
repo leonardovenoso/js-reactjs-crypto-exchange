@@ -16,7 +16,6 @@ export const fetchTransactionsByAccountNumber = async accountNumber => {
   );
   return new Promise(resolve => {
     setTimeout(() => {
-      debugger;
       resolve({ json: () => Promise.resolve(account.transactions) });
     }, 3000);
   });
