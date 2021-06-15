@@ -7,12 +7,8 @@ import Title from './components/atoms/title';
 import DropdownList from './components/molecules/dropdownList';
 import Spinner from './components/atoms/spinner';
 
-import Table, {
-  Header,
-  Body,
-  Row,
-  RowWithBorderBottom,
-} from './components/atoms/table';
+import Table, { Row } from './components/atoms/table';
+import GridTable from './components/molecules/gridTable';
 import Button from './components/atoms/button';
 
 export default function CryptoExchange() {
@@ -76,51 +72,43 @@ export default function CryptoExchange() {
             </Row>
           </Table>
           <Container>
-            <Table>
-              <Header
-                data-cy="transactions-header"
-                columns="0.1fr 1fr 1fr 1fr 0.3fr 0.2fr"
-              >
-                <div>#</div>
-                <div>Time</div>
-                <div>Action</div>
-                <div>Description</div>
-                <div>Currency</div>
-                <div>Amount</div>
-              </Header>
-              <Body data-cy="transactions-body">
-                {transactions.map((transaction, i) => (
-                  <RowWithBorderBottom
-                    key={i}
-                    columns="0.1fr 1fr 1fr 1fr 0.3fr 0.2fr"
-                  >
-                    <div>{i + 1}</div>
-                    <div>{transaction.timestamp}</div>
-                    <div>{transaction.action}</div>
-                    <div>{transaction.description}</div>
-                    <div>{transaction.currency}</div>
-                    <div>{transaction.amount}</div>
-                  </RowWithBorderBottom>
-                ))}
-              </Body>
-              <div>
-                {!isAcountNumberSelected && (
+            <GridTable
+              columns="1fr 1fr 1fr 0.3fr 0.2fr"
+              columnLabels={[
+                'Time',
+                'Action',
+                'Description',
+                'Currency',
+                'Amount',
+              ]}
+              dataCyHeader="transactions-header"
+              dataCyBody="transactions-body"
+              list={transactions}
+              listObjAttrs={[
+                'timestamp',
+                'action',
+                'description',
+                'currency',
+                'amount',
+              ]}
+            />
+            <div>
+              {!isAcountNumberSelected && (
+                <Container>
+                  <Title size="1.2em">Select a bank account</Title>
+                </Container>
+              )}
+              {isAcountNumberSelected &&
+                transactions[0] === undefined &&
+                !showSpinner && (
                   <Container>
-                    <Title size="1.2em">Select a bank account</Title>
+                    <Title size="1.2em">No transactions found</Title>
                   </Container>
                 )}
-                {isAcountNumberSelected &&
-                  transactions[0] === undefined &&
-                  !showSpinner && (
-                    <Container>
-                      <Title size="1.2em">No transactions found</Title>
-                    </Container>
-                  )}
-                <Container align="center" marginTop="5em">
-                  {showSpinner && <Spinner />}
-                </Container>
-              </div>
-            </Table>
+              <Container align="center" marginTop="5em">
+                {showSpinner && <Spinner />}
+              </Container>
+            </div>
           </Container>
         </Container>
       </main>
