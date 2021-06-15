@@ -32,7 +32,7 @@ export const RowWithBorderBottom = styled(Row)`
     padding-left: 1em;
   }
 
-  div:nth-child(5) {
+  div:last-child {
     text-align: right;
     padding-right: 1em;
   }

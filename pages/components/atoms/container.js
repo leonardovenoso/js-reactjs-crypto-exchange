@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin-top: ${props => props.margin || props.theme.containers.margin};
+  margin-top: ${props => props.marginTop || props.theme.containers.margin};
   text-align: ${props => props.align || 'inherit'};
   width: 100%;
 `;
