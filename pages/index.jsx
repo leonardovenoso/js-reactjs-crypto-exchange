@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import fetchBankAccounts, {
   fetchTransactionsByAccountNumber,
 } from '../services/accountService';
 import Container from './components/atoms/container';
 import Title from './components/atoms/title';
-import Select from './components/atoms/select';
+import DropdownList from './components/molecules/dropdownList';
+import Spinner from './components/atoms/spinner';
+
 import Table, {
   Header,
   Body,
@@ -16,7 +18,8 @@ import Button from './components/atoms/button';
 export default function CryptoExchange() {
   const [bankAccounts, setBankAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
-  const bankAccountsRef = useRef(null);
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [isAcountNumberSelected, setIsAcountNumberSelected] = useState(false);
 
   useEffect(() => {
     const start = async () => {
@@ -28,15 +31,20 @@ export default function CryptoExchange() {
     start();
   }, []);
 
-  const fetchTransactions = async () => {
-    if (bankAccountsRef.current.value === '0') {
+  const fetchTransactions = async accountNumber => {
+    if (accountNumber === '0') {
+      setIsAcountNumberSelected(false);
       setTransactions([]);
+      setShowSpinner(false);
       return;
     }
-    const res = await fetchTransactionsByAccountNumber(
-      bankAccountsRef.current.value
-    );
+
+    setIsAcountNumberSelected(true);
+    setTransactions([]);
+    setShowSpinner(true);
+    const res = await fetchTransactionsByAccountNumber(accountNumber);
     const resJson = await res.json();
+    setShowSpinner(false);
     setTransactions(resJson);
   };
 
@@ -49,23 +57,20 @@ export default function CryptoExchange() {
         <Container>
           <Table>
             <Row columns="1fr 1fr">
-              <Container margin="0">
-                <Select
-                  defaultValue={{ label: 'Select account', value: 0 }}
-                  data-cy="select-bank-account"
-                  onChange={fetchTransactions}
-                  ref={bankAccountsRef}
-                >
-                  <option value="0">Select account</option>
-                  {bankAccounts.map(account => (
-                    <option
-                      key={account.accountNumber}
-                      value={account.accountNumber}
-                    >{`${account.bankName} - ${account.accountNumber} (${account.currency})`}</option>
-                  ))}
-                </Select>
+              <Container marginTop="0">
+                <DropdownList
+                  defaultLabel="Select account"
+                  defaultValue="0"
+                  list={bankAccounts}
+                  listKeyLabel="accountNumber"
+                  listKeyValue="accountNumber"
+                  optionLabelFn={el => `
+                    ${el.bankName} - ${el.accountNumber} (${el.currency})`}
+                  cyDataSelector="select-bank-account"
+                  onChangeFn={fetchTransactions}
+                />
               </Container>
-              <Container margin="0" align="right" marginRight="3em">
+              <Container marginTop="0" align="right" marginRight="3em">
                 <Button type="button">Transfer</Button>
               </Container>
             </Row>
@@ -74,8 +79,9 @@ export default function CryptoExchange() {
             <Table>
               <Header
                 data-cy="transactions-header"
-                columns="1fr 1fr 1fr 0.3fr 0.2fr"
+                columns="0.1fr 1fr 1fr 1fr 0.3fr 0.2fr"
               >
+                <div>#</div>
                 <div>Time</div>
                 <div>Action</div>
                 <div>Description</div>
@@ -83,11 +89,12 @@ export default function CryptoExchange() {
                 <div>Amount</div>
               </Header>
               <Body data-cy="transactions-body">
-                {transactions.map(transaction => (
+                {transactions.map((transaction, i) => (
                   <RowWithBorderBottom
-                    key={transaction.timestamp}
-                    columns="1fr 1fr 1fr 0.3fr 0.2fr"
+                    key={i}
+                    columns="0.1fr 1fr 1fr 1fr 0.3fr 0.2fr"
                   >
+                    <div>{i + 1}</div>
                     <div>{transaction.timestamp}</div>
                     <div>{transaction.action}</div>
                     <div>{transaction.description}</div>
@@ -95,14 +102,24 @@ export default function CryptoExchange() {
                     <div>{transaction.amount}</div>
                   </RowWithBorderBottom>
                 ))}
-                {bankAccountsRef &&
-                  bankAccountsRef.current &&
-                  bankAccountsRef.current.value === '0' && (
+              </Body>
+              <div>
+                {!isAcountNumberSelected && (
+                  <Container>
+                    <Title size="1.2em">Select a bank account</Title>
+                  </Container>
+                )}
+                {isAcountNumberSelected &&
+                  transactions[0] === undefined &&
+                  !showSpinner && (
                     <Container>
-                      <Title>Select a bank account</Title>
+                      <Title size="1.2em">No transactions found</Title>
                     </Container>
                   )}
-              </Body>
+                <Container align="center" marginTop="5em">
+                  {showSpinner && <Spinner />}
+                </Container>
+              </div>
             </Table>
           </Container>
         </Container>
