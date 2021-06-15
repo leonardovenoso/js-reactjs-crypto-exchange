@@ -14,7 +14,12 @@ export const fetchTransactionsByAccountNumber = async accountNumber => {
   const account = accountInformation.find(
     account => account.accountNumber === accountNumber
   );
-  return Promise.resolve({ json: () => Promise.resolve(account.transactions) });
+  return new Promise(resolve => {
+    setTimeout(() => {
+      debugger;
+      resolve({ json: () => Promise.resolve(account.transactions) });
+    }, 3000);
+  });
 };
 
 export default fetchBankAccounts;
