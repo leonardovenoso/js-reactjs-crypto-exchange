@@ -1,24 +1,31 @@
+import { ThemeProvider } from 'styled-components';
 import { mount } from '@cypress/react';
+import { darkTheme } from '../../../pages/theme';
 import DropdownList from '../../../pages/components/molecules/dropdownList';
 
 describe('DropdownList', () => {
   describe('when select has default values', () => {
     beforeEach(() => {
-      mount(<DropdownList />);
+      mount(
+        <ThemeProvider theme={darkTheme}>
+          <DropdownList />
+        </ThemeProvider>
+      );
     });
 
-    it('shows a Select HTMLElement', () => {
+    it('shows a dropdown list', () => {
       cy.get('[data-cy=dropdownlist]');
     });
 
     it('shows Select as default label', () => {
-      expect(cy.get('[data-cy=dropdownlist] option').invoke('text')).eq(
-        'Select'
-      );
+      cy.get('[data-cy=dropdownlist]').find(':selected').contains('Select');
     });
 
     it('shows Select as default value', () => {
-      expect(cy.get('[data-cy=dropdownlist] option').invoke('value')).eq('0');
+      expect(cy.get('[data-cy=dropdownlist]').first().invoke('val')).should(
+        'eq',
+        '0'
+      );
     });
   });
 });
