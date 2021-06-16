@@ -6,7 +6,7 @@ const transactionGenerator = (currency, amountOfRecords) => {
     const randomAmount = Math.floor(Math.random() * (2000 - 300 + 1)) + 100;
 
     credits.push({
-      action: 'credit',
+      action: 'Credit',
       amount: randomAmount,
       currency,
       description: 'Savings',
@@ -14,7 +14,7 @@ const transactionGenerator = (currency, amountOfRecords) => {
     });
 
     debits.push({
-      action: 'debit',
+      action: 'Debit',
       amount: randomAmount,
       currency,
       description: 'Savings',
