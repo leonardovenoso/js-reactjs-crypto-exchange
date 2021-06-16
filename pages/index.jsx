@@ -60,6 +60,7 @@ export default function CryptoExchange() {
                   list={bankAccounts}
                   listKeyLabel="accountNumber"
                   listKeyValue="accountNumber"
+                  block={showSpinner}
                   optionLabelFn={el => `
                     ${el.bankName} - ${el.accountNumber} (${el.currency})`}
                   cyDataSelector="select-bank-account"

@@ -9,11 +9,13 @@ const DropdownList = ({
   optionLabelFn = (el = 'No options') => el,
   onChangeFn = () => '',
   cyDataSelector = 'dropdownlist',
+  block = false,
 }) => (
   <Select
     defaultValue={{ label: defaultLabel, value: defaultValue }}
     data-cy={cyDataSelector}
     onChange={evt => onChangeFn(evt.target.value)}
+    disabled={block ? true : null}
   >
     <option value={defaultValue}>{defaultLabel}</option>
     {list.map(el => (
