@@ -11,10 +11,15 @@ export const Header = styled(Table)`
   background: ${props => props.theme.colors.black};
   height: 2em;
   user-select: none;
-  padding-left: 1em;
 
   div {
     transform: translateY(20%);
+    padding-left: 1em;
+    padding-right: 0.3em;
+  }
+  div:last-child {
+    box-sizing: border-box;
+    padding-right: 1em;
   }
 `;
 
@@ -23,17 +28,21 @@ export const Row = styled(Table)`
   grid-template-columns: ${props => props.columns || 'inherit'};
   height: 2em;
   font-size: 0.8em;
+  text-align: ${props => props.align || 'inherit'};
 `;
 
 export const RowWithBorderBottom = styled(Row)`
-  border-bottom: 0.1px solid ${props => props.theme.colors.darkgray2};
+  display: grid;
+  align-items: center;
+  border-bottom: 0.1em solid ${props => props.theme.colors.darkgray2};
+
   div {
-    transform: translateY(20%);
+    box-sizing: border-box;
     padding-left: 1em;
   }
 
   div:last-child {
-    text-align: right;
+    box-sizing: border-box;
     padding-right: 1em;
   }
 `;
