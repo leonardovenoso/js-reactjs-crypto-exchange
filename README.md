@@ -17,4 +17,4 @@ Run command: npm run install
 Run command: npm run dev
 
 # Tests
-Headless component tests: cypress run-ct
+Headless component tests: npm run test-components-headless
