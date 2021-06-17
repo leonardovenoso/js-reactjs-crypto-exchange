@@ -1,5 +1,6 @@
-import fetchBankAccounts from '../../../../services/accountService';
-import { fetchTransactionsByAccountNumber } from '../../../../services/accountService';
+import fetchBankAccounts, {
+  fetchTransactionsByAccountNumber,
+} from '../../../../services/accountService';
 
 describe('Account Service', () => {
   let accountInformation;

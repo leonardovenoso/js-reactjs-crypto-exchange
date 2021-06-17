@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { mount } from '@cypress/react';
-import { darkTheme } from '../../../pages/theme';
-import GridTable from '../../../pages/components/molecules/gridTable';
+import { darkTheme } from '../../../theme';
+import GridTable from '../../../components/molecules/gridTable';
 import { accountInformation } from '../../../services/data';
 
 describe('GridTable molecule', () => {

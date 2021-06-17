@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { mount } from '@cypress/react';
-import { darkTheme } from '../../../pages/theme';
-import DropdownList from '../../../pages/components/molecules/dropdownList';
+import { darkTheme } from '../../../theme';
+import DropdownList from '../../../components/molecules/dropdownList';
 
 describe('DropdownList', () => {
   describe('when select has default values', () => {
