@@ -2,6 +2,9 @@
 Cryto exchange implements a UI that accesses a simulated backend API that manages
 bank accounts.
 
+URL: https://js-reactjs-crypto-exchange-cgapdmxap-leonardovenoso.vercel.app/
+
+
 # Conventions
 UI = User interface component
 UT = Unit test
@@ -18,3 +21,7 @@ Run command: npm run dev
 
 # Tests
 Headless component tests: npm run test-components-headless
+Code coverage is run when the tests are run. Folder: .coverage/lcov-report/index.html
+
+# Notes
+Chrome support only
