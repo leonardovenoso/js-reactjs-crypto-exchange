@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { mount } from '@cypress/react';
 import { darkTheme } from '../../../pages/theme';
-import Transfer from '../../../pages/components/molecules/transfer';
+import Transfer from '../../../components/molecules/transfer';
 
 describe('Transfer', () => {
   describe('page elements', () => {
