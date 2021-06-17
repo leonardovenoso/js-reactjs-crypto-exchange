@@ -102,7 +102,6 @@ const addTransaction = (
     timestamp: Date.now(),
   });
   accountInformation[accountToIndex].amount += parseFloat(amount);
-  debugger;
 };
 
 export const transfer = (
