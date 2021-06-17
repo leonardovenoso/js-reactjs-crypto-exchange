@@ -78,3 +78,56 @@ export const accountInformation = [
     transactions: [],
   },
 ];
+
+const addTransaction = (
+  accountFromIndex,
+  accountToIndex,
+  amount,
+  description
+) => {
+  accountInformation[accountFromIndex].transactions.push({
+    action: 'debit',
+    amount: -amount,
+    currency: accountInformation[accountFromIndex].currency,
+    description,
+    timestamp: Date.now(),
+  });
+  accountInformation[accountFromIndex].amount -= parseFloat(amount);
+
+  accountInformation[accountToIndex].transactions.push({
+    action: 'credit',
+    amount,
+    currency: accountInformation[accountToIndex].currency,
+    description,
+    timestamp: Date.now(),
+  });
+  accountInformation[accountToIndex].amount += parseFloat(amount);
+  debugger;
+};
+
+export const transfer = (
+  accountNumberFrom,
+  accountNumberTo,
+  amount,
+  description
+) => {
+  const accountFromIndex = accountInformation.findIndex(
+    account => account.accountNumber === accountNumberFrom
+  );
+  const accountToIndex = accountInformation.findIndex(
+    account => account.accountNumber === accountNumberTo
+  );
+
+  if (parseInt(amount, 10) === 0) {
+    return { message: 'Amount should be greater than 0', status: 'error' };
+  }
+
+  if (
+    parseFloat(amount) > parseFloat(accountInformation[accountFromIndex].amount)
+  ) {
+    return { message: 'Insufficient funds', status: 'error' };
+  }
+
+  addTransaction(accountFromIndex, accountToIndex, amount, description);
+  return { message: `Transaction successful. Id: ${Date.now()}`, status: 'ok' };
+};

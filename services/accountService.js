@@ -1,4 +1,4 @@
-import { accountInformation } from './data';
+import { accountInformation, transfer } from './data';
 
 const fetchBankAccounts = async () => {
   const bankAccounts = accountInformation.map(account => ({
@@ -17,9 +17,26 @@ export const fetchTransactionsByAccountNumber = async accountNumber => {
   );
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve({ json: () => Promise.resolve(account.transactions) });
+      resolve({ json: () => Promise.resolve(account.transactions.reverse()) });
     }, 2300);
   });
 };
+
+export const transferCurrency = async (
+  bankAccountFrom,
+  bankAccountTo,
+  amount,
+  description
+) =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        json: () =>
+          Promise.resolve(
+            transfer(bankAccountFrom, bankAccountTo, amount, description)
+          ),
+      });
+    }, 1000);
+  });
 
 export default fetchBankAccounts;
