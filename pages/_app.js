@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, GlobalStyle } from './theme';
+import { darkTheme, GlobalStyle } from '../theme';
 
 export default function App({ Component, pageProps }) {
   return (
