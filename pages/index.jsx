@@ -18,25 +18,6 @@ export default function CryptoExchange() {
   const [isAcountNumberSelected, setIsAcountNumberSelected] = useState(false);
   const [isTransferModalOpen, setTransferModalOpen] = useState(false);
   const [selectedBankAccount, setSelectedBankAccount] = useState('0');
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchTransactions = async () => {
-    if (selectedBankAccount === '0') {
-      setIsAcountNumberSelected(false);
-      setTransactions([]);
-      setShowSpinner(false);
-      return;
-    }
-
-    setIsAcountNumberSelected(true);
-    setTransactions([]);
-    setShowSpinner(true);
-    const res = await fetchTransactionsByAccountNumber(selectedBankAccount);
-    const resJson = await res.json();
-    setShowSpinner(false);
-    setTransactions(resJson);
-  };
-
   const openTransferModal = () => setTransferModalOpen(true);
 
   useEffect(() => {
@@ -53,8 +34,24 @@ export default function CryptoExchange() {
 
   useEffect(() => {
     if (isTransferModalOpen === true) return;
-    const start = () => fetchTransactions();
-    start();
+
+    const fetchTransactions = async () => {
+      if (selectedBankAccount === '0') {
+        setIsAcountNumberSelected(false);
+        setTransactions([]);
+        setShowSpinner(false);
+        return;
+      }
+
+      setIsAcountNumberSelected(true);
+      setTransactions([]);
+      setShowSpinner(true);
+      const res = await fetchTransactionsByAccountNumber(selectedBankAccount);
+      const resJson = await res.json();
+      setShowSpinner(false);
+      setTransactions(resJson);
+    };
+    fetchTransactions();
   }, [selectedBankAccount, isTransferModalOpen]);
 
   return (

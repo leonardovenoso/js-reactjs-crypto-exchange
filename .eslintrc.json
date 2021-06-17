@@ -23,8 +23,7 @@
     "no-shadow": "off",
     "react/react-in-jsx-scope": "off",
     "no-debugger": "off",
-    "no-plusplus": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "no-plusplus": "off"
   },
   "settings": {
     "import/resolver": {
