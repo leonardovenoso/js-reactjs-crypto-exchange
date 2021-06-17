@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import fetchBankAccounts, {
   fetchTransactionsByAccountNumber,
 } from '../services/accountService';
-import GridTable from './components/molecules/gridTable';
-import DropdownList from './components/molecules/dropdownList';
-import Transfer from './components/molecules/transfer';
-import Table, { Row } from './components/atoms/table';
-import Container from './components/atoms/container';
-import Title from './components/atoms/title';
-import Spinner from './components/atoms/spinner';
-import Button from './components/atoms/button';
+import GridTable from '../components/molecules/gridTable';
+import DropdownList from '../components/molecules/dropdownList';
+import Transfer from '../components/molecules/transfer';
+import Table, { Row } from '../components/atoms/table';
+import Container from '../components/atoms/container';
+import Title from '../components/atoms/title';
+import Spinner from '../components/atoms/spinner';
+import Button from '../components/atoms/button';
 
 export default function CryptoExchange() {
   const [bankAccounts, setBankAccounts] = useState([]);
