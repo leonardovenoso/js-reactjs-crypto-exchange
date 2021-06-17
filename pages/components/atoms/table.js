@@ -11,14 +11,14 @@ export const Header = styled(Table)`
   background: ${props => props.theme.colors.black};
   height: 2em;
   user-select: none;
+  align-items: center;
 
   div {
-    transform: translateY(20%);
     padding-left: 1em;
     padding-right: 0.3em;
   }
+
   div:last-child {
-    box-sizing: border-box;
     padding-right: 1em;
   }
 `;

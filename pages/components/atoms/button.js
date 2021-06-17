@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  height: 3em;
+  height: 40px;
   cursor: pointer;
   background: ${props => props.theme.colors.secondary};
   border: 1px solid ${props => props.theme.colors.black};

@@ -33,8 +33,10 @@ const GridTable = ({
       {list.map((el, i) => (
         <RowWithBorderBottom key={i} columns={`${'0.1fr'} ${columns}`}>
           <div>{i + 1}</div>
-          {listObjAttrs.map(attr => (
-            <div style={alignmentStyle(attr.alignment)}>{el[attr.name]}</div>
+          {listObjAttrs.map((attr, n) => (
+            <div key={n} style={alignmentStyle(attr.alignment)}>
+              {el[attr.name]}
+            </div>
           ))}
         </RowWithBorderBottom>
       ))}

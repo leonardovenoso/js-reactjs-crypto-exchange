@@ -3,6 +3,7 @@ import { accountInformation } from './data';
 const fetchBankAccounts = async () => {
   const bankAccounts = accountInformation.map(account => ({
     accountNumber: account.accountNumber,
+    amount: account.amount,
     bankName: account.bankName,
     currency: account.currency,
   }));
@@ -17,7 +18,7 @@ export const fetchTransactionsByAccountNumber = async accountNumber => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({ json: () => Promise.resolve(account.transactions) });
-    }, 3000);
+    }, 2300);
   });
 };
 

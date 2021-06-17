@@ -14,12 +14,15 @@ const DropdownList = ({
   <Select
     defaultValue={{ label: defaultLabel, value: defaultValue }}
     data-cy={cyDataSelector}
-    onChange={evt => onChangeFn(evt.target.value)}
+    onChange={onChangeFn}
     disabled={block ? true : null}
   >
     <option value={defaultValue}>{defaultLabel}</option>
     {list.map(el => (
-      <option key={el[listKeyLabel]} value={el[listKeyValue]}>
+      <option
+        key={`${cyDataSelector}-${el[listKeyLabel]}`}
+        value={el[listKeyValue]}
+      >
         {optionLabelFn(el)}
       </option>
     ))}

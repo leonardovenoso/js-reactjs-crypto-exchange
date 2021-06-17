@@ -5,7 +5,7 @@ const Title = styled.div`
   width: 100%;
   text-align: center;
   user-select: none;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.color || props.theme.colors.primary};
 `;
 
 export default Title;

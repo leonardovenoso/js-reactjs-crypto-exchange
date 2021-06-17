@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import fetchBankAccounts, {
   fetchTransactionsByAccountNumber,
 } from '../services/accountService';
+import GridTable from './components/molecules/gridTable';
+import DropdownList from './components/molecules/dropdownList';
+import Transfer from './components/molecules/transfer';
+import Table, { Row } from './components/atoms/table';
 import Container from './components/atoms/container';
 import Title from './components/atoms/title';
-import DropdownList from './components/molecules/dropdownList';
 import Spinner from './components/atoms/spinner';
-
-import Table, { Row } from './components/atoms/table';
-import GridTable from './components/molecules/gridTable';
 import Button from './components/atoms/button';
 
 export default function CryptoExchange() {
@@ -16,6 +16,7 @@ export default function CryptoExchange() {
   const [transactions, setTransactions] = useState([]);
   const [showSpinner, setShowSpinner] = useState(false);
   const [isAcountNumberSelected, setIsAcountNumberSelected] = useState(false);
+  const [isTransferModalOpen, setTransferModalOpen] = useState(false);
 
   useEffect(() => {
     const start = async () => {
@@ -27,7 +28,9 @@ export default function CryptoExchange() {
     start();
   }, []);
 
-  const fetchTransactions = async accountNumber => {
+  const fetchTransactions = async evt => {
+    const accountNumber = evt.target.value;
+
     if (accountNumber === '0') {
       setIsAcountNumberSelected(false);
       setTransactions([]);
@@ -44,6 +47,7 @@ export default function CryptoExchange() {
     setTransactions(resJson);
   };
 
+  const openTransferModal = () => setTransferModalOpen(true);
   return (
     <div>
       <main>
@@ -52,7 +56,7 @@ export default function CryptoExchange() {
         </Container>
         <Container>
           <Table>
-            <Row columns="1fr 1fr">
+            <Row columns="0.3fr 1fr">
               <Container marginTop="0">
                 <DropdownList
                   defaultLabel="Select account"
@@ -65,38 +69,43 @@ export default function CryptoExchange() {
                     ${el.bankName} - ${el.accountNumber} (${el.currency})`}
                   cyDataSelector="select-bank-account"
                   onChangeFn={fetchTransactions}
+                  key="bank-accounts"
                 />
               </Container>
               <Container marginTop="0" align="right" marginRight="3em">
-                <Button type="button">Transfer</Button>
+                <Button type="button" onClick={openTransferModal}>
+                  Transfer
+                </Button>
               </Container>
             </Row>
           </Table>
           <Container>
             <GridTable
-              columns="1fr 1fr 1fr 0.3fr 0.2fr"
+              columns="0.4fr 0.4fr 1fr 0.2fr 0.2fr"
               columnLabels={[
-                'Time',
-                'Action',
-                'Description',
-                'Currency',
-                'Amount',
+                { alignment: 'left', name: 'Time' },
+                { alignment: 'left', name: 'Action' },
+                { alignment: 'left', name: 'Description' },
+                { alignment: 'left', name: 'Currency' },
+                { alignment: 'right', name: 'Amount' },
               ]}
               dataCyHeader="transactions-header"
               dataCyBody="transactions-body"
               list={transactions}
               listObjAttrs={[
-                'timestamp',
-                'action',
-                'description',
-                'currency',
-                'amount',
+                { alignment: 'left', name: 'timestamp' },
+                { alignment: 'left', name: 'action' },
+                { alignment: 'left', name: 'description' },
+                { alignment: 'left', name: 'currency' },
+                { alignment: 'right', name: 'amount' },
               ]}
             />
             <div>
               {!isAcountNumberSelected && (
                 <Container>
-                  <Title size="1.2em">Select a bank account</Title>
+                  <Title size="1.2em">
+                    Select a bank account to list your transactions
+                  </Title>
                 </Container>
               )}
               {isAcountNumberSelected &&
@@ -112,6 +121,10 @@ export default function CryptoExchange() {
             </div>
           </Container>
         </Container>
+        <Transfer
+          isOpen={isTransferModalOpen}
+          closeFn={() => setTransferModalOpen(false)}
+        />
       </main>
     </div>
   );

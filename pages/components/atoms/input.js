@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-const Select = styled.select`
+const Input = styled.input`
   height: 40px;
-  color: ${props => props.theme.colors.darkgray};
+  color: ${props => props.color || props.theme.colors.darkgray};
   cursor: pointer;
   border-radius: ${props => props.theme.border.radious};
   outline: none;
-  width: ${props => props.width || '100%'};
+  width: 100%;
   border: 1px solid black;
+  font-size: 1.7em;
   box-sizing: border-box;
 `;
 
-export default Select;
+export default Input;

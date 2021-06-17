@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const darkTheme = {
+  border: {
+    radious: '6px',
+  },
   colors: {
     black: 'black',
     darkgray: 'rgb(30, 35, 41)',
@@ -22,6 +25,10 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 16px;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 15px;
+    }
   }
 
   body {
