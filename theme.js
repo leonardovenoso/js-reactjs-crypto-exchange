@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 300;
     background: ${darkTheme.colors.darkgray};
   }
