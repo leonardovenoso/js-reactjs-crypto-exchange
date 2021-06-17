@@ -20,7 +20,13 @@ Run command: npm run install
 Run command: npm run dev
 
 # Tests
-Headless component tests: npm run test-components-headless
+Run unit and integration tests:
+  1. Run dev webserver: npm run dev
+  2. Run tests: npm run e2e
+
+Run component tests:
+npm run test-components-headless
+
 Code coverage is run when the tests are run. Folder: .coverage/lcov-report/index.html
 
 # Notes

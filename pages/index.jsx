@@ -82,7 +82,11 @@ export default function CryptoExchange() {
                 />
               </Container>
               <Container marginTop="0" align="right" marginRight="3em">
-                <Button type="button" onClick={openTransferModal}>
+                <Button
+                  type="button"
+                  onClick={openTransferModal}
+                  data-cy="open-transfer-modal"
+                >
                   Transfer
                 </Button>
               </Container>
