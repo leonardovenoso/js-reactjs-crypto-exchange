@@ -11,11 +11,18 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
+            href="https://fonts.googleapis.com/css2?family=Lato&family=Rubik:wght@300;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato&family=Rubik:wght@300;600;900&display=swap"
+            rel="stylesheet"
+          />
+          <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
-
           <link
             rel="preload"
             as="style"
