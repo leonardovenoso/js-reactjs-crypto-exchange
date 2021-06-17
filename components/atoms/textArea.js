@@ -11,6 +11,7 @@ const TextArea = styled.textarea.attrs({
   width: 100%;
   border: 1px solid black;
   box-sizing: border-box;
+  background: white;
 `;
 
 export default TextArea;

@@ -9,6 +9,7 @@ const Select = styled.select`
   width: ${props => props.width || '100%'};
   border: 1px solid black;
   box-sizing: border-box;
+  background: white;
 `;
 
 export default Select;
