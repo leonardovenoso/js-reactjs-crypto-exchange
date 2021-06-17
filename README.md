@@ -24,4 +24,4 @@ Headless component tests: npm run test-components-headless
 Code coverage is run when the tests are run. Folder: .coverage/lcov-report/index.html
 
 # Notes
-Chrome support only
+Chrome support and Safari
