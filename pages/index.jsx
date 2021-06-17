@@ -17,21 +17,11 @@ export default function CryptoExchange() {
   const [showSpinner, setShowSpinner] = useState(false);
   const [isAcountNumberSelected, setIsAcountNumberSelected] = useState(false);
   const [isTransferModalOpen, setTransferModalOpen] = useState(false);
+  const [selectedBankAccount, setSelectedBankAccount] = useState('0');
 
-  useEffect(() => {
-    const start = async () => {
-      const res = await fetchBankAccounts();
-      const resJson = await res.json();
-      setBankAccounts(resJson);
-    };
-
-    start();
-  }, [isTransferModalOpen]);
-
-  const fetchTransactions = async evt => {
-    const accountNumber = evt.target.value;
-
-    if (accountNumber === '0') {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const fetchTransactions = async () => {
+    if (selectedBankAccount === '0') {
       setIsAcountNumberSelected(false);
       setTransactions([]);
       setShowSpinner(false);
@@ -41,13 +31,32 @@ export default function CryptoExchange() {
     setIsAcountNumberSelected(true);
     setTransactions([]);
     setShowSpinner(true);
-    const res = await fetchTransactionsByAccountNumber(accountNumber);
+    const res = await fetchTransactionsByAccountNumber(selectedBankAccount);
     const resJson = await res.json();
     setShowSpinner(false);
     setTransactions(resJson);
   };
 
   const openTransferModal = () => setTransferModalOpen(true);
+
+  useEffect(() => {
+    if (isTransferModalOpen === true) return;
+
+    const start = async () => {
+      const res = await fetchBankAccounts();
+      const resJson = await res.json();
+      setBankAccounts(resJson);
+    };
+
+    start();
+  }, [isTransferModalOpen]);
+
+  useEffect(() => {
+    if (isTransferModalOpen === true) return;
+    const start = () => fetchTransactions();
+    start();
+  }, [selectedBankAccount, isTransferModalOpen]);
+
   return (
     <div>
       <main>
@@ -68,7 +77,7 @@ export default function CryptoExchange() {
                   optionLabelFn={el => `
                     ${el.bankName} - ${el.accountNumber} (${el.currency})`}
                   cyDataSelector="select-bank-account"
-                  onChangeFn={fetchTransactions}
+                  onChangeFn={evt => setSelectedBankAccount(evt.target.value)}
                   key="bank-accounts"
                 />
               </Container>
