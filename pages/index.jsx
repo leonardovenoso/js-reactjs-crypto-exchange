@@ -26,7 +26,7 @@ export default function CryptoExchange() {
     };
 
     start();
-  }, []);
+  }, [isTransferModalOpen]);
 
   const fetchTransactions = async evt => {
     const accountNumber = evt.target.value;
@@ -83,7 +83,7 @@ export default function CryptoExchange() {
             <GridTable
               columns="0.4fr 0.4fr 1fr 0.2fr 0.2fr"
               columnLabels={[
-                { alignment: 'left', name: 'Time' },
+                { alignment: 'left', name: 'Timestamp' },
                 { alignment: 'left', name: 'Action' },
                 { alignment: 'left', name: 'Description' },
                 { alignment: 'left', name: 'Currency' },
@@ -93,11 +93,11 @@ export default function CryptoExchange() {
               dataCyBody="transactions-body"
               list={transactions}
               listObjAttrs={[
-                { alignment: 'left', name: 'timestamp' },
+                { alignment: 'left', name: 'timestamp', type: 'timestamp' },
                 { alignment: 'left', name: 'action' },
                 { alignment: 'left', name: 'description' },
                 { alignment: 'left', name: 'currency' },
-                { alignment: 'right', name: 'amount' },
+                { alignment: 'right', name: 'amount', type: 'int' },
               ]}
             />
             <div>

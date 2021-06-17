@@ -12,6 +12,24 @@ const alignmentStyle = alignment => {
   };
 };
 
+const format = (str, type) => {
+  if (type === 'timestamp') {
+    const dt = new Date(str);
+    return `${(dt.getMonth() + 1).toString().padStart(2, '0')}/${dt
+      .getDate()
+      .toString()
+      .padStart(2, '0')}/${dt.getFullYear().toString().padStart(4, '0')} ${dt
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`;
+  }
+  if (type === 'int') {
+    return parseInt(str, 10);
+  }
+
+  return str;
+};
+
 const GridTable = ({
   columns,
   columnLabels,
@@ -35,7 +53,7 @@ const GridTable = ({
           <div>{i + 1}</div>
           {listObjAttrs.map((attr, n) => (
             <div key={n} style={alignmentStyle(attr.alignment)}>
-              {el[attr.name]}
+              {format(el[attr.name], attr.type)}
             </div>
           ))}
         </RowWithBorderBottom>

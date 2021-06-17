@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-  height: 40px;
+  height: 30px;
   color: ${props => props.color || props.theme.colors.darkgray};
   cursor: pointer;
   border-radius: ${props => props.theme.border.radious};

@@ -19,7 +19,8 @@ export const Content = styled.div`
   border: 1px solid #888;
   width: ${props => props.width || '80%'};
   border-radius: ${props => props.theme.border.radious};
-  height: ${props => props.width || '80%'};
+  height: ${props => props.height || '80%'};
+  position: relative;
 `;
 
 export const Close = styled.div`
@@ -27,6 +28,9 @@ export const Close = styled.div`
   float: right;
   font-size: 2em;
   font-weight: bold;
+  position: absolute;
+  right: 0.2em;
+  top: 0;
 
   &:hover,
   &:focus {

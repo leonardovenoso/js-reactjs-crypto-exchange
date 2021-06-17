@@ -44,4 +44,15 @@ export const GlobalStyle = createGlobalStyle`
   h2 {
     font-weight: 600;
   }
+
+  .error {
+    text-align: center;
+    color: red;
+  }
+
+  .success {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+  }
 `;
