@@ -30,6 +30,7 @@ const Transfer = ({ isOpen, closeFn }) => {
       setBankAccountsFrom(resJson);
     };
 
+    setErrors([]);
     setBankAccountsFrom([]);
     setBankAccountsTo([]);
     setBankAccountFrom('0');
