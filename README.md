@@ -6,12 +6,12 @@ URL: https://js-reactjs-crypto-exchange-cgapdmxap-leonardovenoso.vercel.app/
 
 
 # Conventions
-UI = User interface component
-UT = Unit test
-IT = Integration test
-CT = Component test
-RF = Refactoring
-CF = Configurations
+- UI = User interface component
+- UT = Unit test
+- IT = Integration test
+- CT = Component test
+- RF = Refactoring
+- CF = Configurations
 
 # Installation
 Install NodeJs v12.16.1
@@ -29,8 +29,8 @@ npm run test-components-headless
 
 Code coverage is run when the tests are run. Folder: .coverage/lcov-report/index.html
 
-# Run linter
+# Linter
 npm run lint
 
-# Notes
-Chrome support and Safari
+# Browser compatibility
+Chrome and Safari support
