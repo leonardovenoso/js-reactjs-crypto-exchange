@@ -1,5 +1,5 @@
 # Crypto Exchange UI
-Cryto exchange implements a UI that accesses a simulated backend API that manages
+Cryto exchange implements a UI that access to a simulated backend API that manages
 bank accounts.
 
 URL: https://js-reactjs-crypto-exchange-cgapdmxap-leonardovenoso.vercel.app/
